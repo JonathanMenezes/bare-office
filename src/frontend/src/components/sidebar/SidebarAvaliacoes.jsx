@@ -17,7 +17,7 @@ const Sidebar = () => {
                         <ul id='sidebarnav' className='pt-4 in'>
                             <li className='sidebar-item'>
                                 <Link className='sidebar-link waves-effect waves-dark' to="/dashboard" aria-expanded="false">
-                                    <i className='mdi mdi-view-dashboard sidebar-icon'>
+                                    <i className='sidebar-icon'>
                                         <BiSolidDashboard className='icon-24' />
                                     </i>
                                     <span className='hide-menu'>Dashboard</span>
@@ -25,7 +25,7 @@ const Sidebar = () => {
                             </li>
                             <li className='sidebar-item'>
                                 <Link className='sidebar-link waves-effect waves-dark' to="/clientes" aria-expanded="false">
-                                    <i className='mdi mdi-view-dashboard sidebar-icon'>
+                                    <i className='sidebar-icon'>
                                         <MdPerson className='icon-24' />
                                     </i>
                                     <span className='hide-menu'>Clientes</span>
@@ -33,7 +33,7 @@ const Sidebar = () => {
                             </li>
                             <li className='sidebar-item'>
                                 <Link className='sidebar-link waves-effect waves-dark' to="/prestadoras" aria-expanded="false">
-                                    <i className='mdi mdi-view-dashboard sidebar-icon'>
+                                    <i className='sidebar-icon'>
                                         <BsPersonVcardFill className='icon-24' />
                                     </i>
                                     <span className='hide-menu'>Prestadoras</span>
@@ -41,7 +41,7 @@ const Sidebar = () => {
                             </li>
                             <li className='sidebar-item'>
                                 <Link className='sidebar-link waves-effect waves-dark' to="/videos" aria-expanded="false">
-                                    <i className='mdi mdi-view-dashboard sidebar-icon'>
+                                    <i className='sidebar-icon'>
                                         <MdVideoLibrary className='icon-24' />
                                     </i>
                                     <span className='hide-menu'>Vídeos</span>
@@ -49,7 +49,7 @@ const Sidebar = () => {
                             </li>
                             <li className='sidebar-item'>
                                 <Link className='sidebar-link waves-effect waves-dark' to="/categorias" aria-expanded="false">
-                                    <i className='mdi mdi-view-dashboard sidebar-icon'>
+                                    <i className='sidebar-icon'>
                                         <MdCategory className='icon-24' />
                                     </i>
                                     <span className='hide-menu'>Categorias</span>
@@ -57,19 +57,19 @@ const Sidebar = () => {
                             </li>
                             <li className='sidebar-item selected'>
                                 <Link className='sidebar-link waves-effect waves-dark active' to="/avaliacoes" aria-expanded="false">
-                                    <i className='mdi mdi-view-dashboard sidebar-icon'>
+                                    <i className='sidebar-icon'>
                                         <FaClipboardCheck className='icon-24' />
                                     </i>
                                     <span className='hide-menu'>Avaliações</span>
                                 </Link>
                             </li>
-                            <li className='sidebar-item selected-2'>
-                                <Link className='sidebar-link waves-effect waves-dark active' to="/">
-                                    <button className='btn btn-warning rounded-full text-center text-black opacity-100'>
-                                        <i className='mdi mdi-view-dashboard sidebar-icon text-black'>
+                            <li className='sidebar-item'>
+                                <Link className='sidebar-link' to="/">
+                                    <button className='btn btn-green rounded-full text-center text-black opacity-100'>
+                                        <i className='sidebar-icon text-black'>
                                             <MdLogout className='icon-24' />
                                         </i>
-                                        <span className='hide-menu'>Encerrar Sessão</span>
+                                        <span className='hide-menu text-bold'>Encerrar Sessão</span>
                                     </button>
                                 </Link>
                             </li>

@@ -16,9 +16,9 @@ const VideoTable = () => {
             .catch(err => console.log(err));
     }, []);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (videoId) => {
         try {
-            await axios.delete("http://127.0.0.1:5000/videos/" + id);
+            await axios.delete("http://127.0.0.1:5000/videos/" + videoId);
             window.location.reload();
         } catch (err) {
             console.log(err);
@@ -27,8 +27,8 @@ const VideoTable = () => {
 
 
     return (
-        <div className="d-flex vh-100 w-full justify-content-center text-center">
-            <div className="bg-white rounded p-3">
+        <div className="vh-100 w-full justify-content-center text-center">
+            <div className="bg-white rounded p-3 text-18">
                 <Link to="/videos/create" className="btn btn-success text-white text-center"><BsPlus className="icon-24 text-white" /> Criar novo</Link>
                 <table className="table">
                     <thead>
@@ -42,13 +42,13 @@ const VideoTable = () => {
                     <tbody>
                         {
                             video.map((data) => (
-                                <tr key={data.id}>
+                                <tr key={data.videoId}>
                                     <td>{data.titulo}</td>
                                     <td>{data.duracao}</td>
                                     <td>{data.prestadora_id}</td>
                                     <td>
-                                        <Link to={`/videos/update/${data.id}`} className="btn btn-primary text-white text-center"><MdEdit className="icon-24 text-white" /> Editar</Link>
-                                        <button className="btn btn-danger text-white ms-2 text-center" onClick={e => handleDelete(data.id)}><MdDelete className="icon-24 text-white" /> Excluir</button>
+                                        <Link to={`/videos/update/${data.videoId}`} className="btn btn-primary text-white text-center"><MdEdit className="icon-24 text-white" /> Editar</Link>
+                                        <button className="btn btn-danger text-white ms-2 text-center" onClick={e => handleDelete(data.videoId)}><MdDelete className="icon-24 text-white" /> Excluir</button>
                                     </td>
                                 </tr>
                             ))

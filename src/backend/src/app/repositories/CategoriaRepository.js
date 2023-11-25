@@ -11,8 +11,6 @@ class CategoriaRepository {
         return consulta(sql, categoria)
     }
 
-
-
     update(categoria, id) {
         const sql = "UPDATE `bare_office`.`categoria` SET ? WHERE `id` = ?";
         return consulta(sql, [categoria, id])

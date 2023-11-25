@@ -4,7 +4,8 @@ import "../styles/util.css";
 import { React, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { MdPersonOutline, MdLockOutline } from "react-icons/md";
-import { RiFacebookFill, RiTwitterXFill, RiGoogleFill } from "react-icons/ri";
+import { RiFacebookFill, RiGoogleFill } from "react-icons/ri";
+import { FaGithub } from "react-icons/fa"
 import axios from 'axios'
 
 const Login = () => {
@@ -14,17 +15,29 @@ const Login = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.post("http://127.0.0.1:5000/login", {
+        axios.get("http://127.0.0.1:5000/login", {
             username: username,
             password: password,
         })
             .then(navigate("/dashboard"))
             .catch(err => {
                 if (err.response) {
-                    alert(err.response.data.message);
+                    navigate("/")
                 }
             });
     }
+
+    const google = () => {
+        window.open("http://localhost:5000/auth/google", "_self");
+    };
+
+    const github = () => {
+        window.open("http://localhost:5000/auth/github", "_self");
+    };
+
+    const facebook = () => {
+        window.open("http://localhost:5000/auth/facebook", "_self");
+    };
 
     return (
         <div className="limiter">
@@ -70,17 +83,17 @@ const Login = () => {
 
                         <div className="flex-c-m">
                             {/* eslint-disable-next-line */}
-                            <a href="#" className="login100-social-item bg1">
+                            <i className="login100-social-item bg1" onClick={facebook}>
                                 <RiFacebookFill />
-                            </a>
+                            </i>
                             {/* eslint-disable-next-line */}
-                            <a href="#" className="login100-social-item bg2">
-                                <RiTwitterXFill />
-                            </a>
+                            <i className="login100-social-item bg2" onClick={github}>
+                                <FaGithub />
+                            </i>
                             {/* eslint-disable-next-line */}
-                            <a href="#" className="login100-social-item bg3">
+                            <i className="login100-social-item bg3" onClick={google}>
                                 <RiGoogleFill />
-                            </a>
+                            </i>
                         </div>
 
                         <div className="flex-col-c p-t-155">

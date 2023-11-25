@@ -10,7 +10,7 @@ const CategoriaUpdate = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.post('http://127.0.0.1:5000/categorias/update' + id, {
+        axios.post('http://127.0.0.1:5000/categorias-update' + id, {
             nome, ativa
         })
             .then(res => {
@@ -20,7 +20,7 @@ const CategoriaUpdate = () => {
     }
 
     return (
-        <div className="d-flex vh-100 w-full justify-content-center">
+        <div className="text-18 vh-100 w-full justify-content-center">
             <div className="bg-white rounded p-3">
                 <form onSubmit={handleSubmit}>
                     <div className='mb-2'>

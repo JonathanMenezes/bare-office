@@ -63,11 +63,11 @@ const Sidebar = () => {
                             </li>
                             <li className='sidebar-item selected-2'>
                                 <Link className='sidebar-link waves-effect waves-dark active' to="/">
-                                    <button className='btn btn-warning rounded-full text-center text-black opacity-100'>
+                                    <button className='btn btn-green rounded-full text-center text-black opacity-100'>
                                         <i className='mdi mdi-view-dashboard sidebar-icon text-black'>
                                             <MdLogout className='icon-24' />
                                         </i>
-                                        <span className='hide-menu'>Encerrar Sessão</span>
+                                        <span className='hide-menu text-bold'>Encerrar Sessão</span>
                                     </button>
                                 </Link>
                             </li>

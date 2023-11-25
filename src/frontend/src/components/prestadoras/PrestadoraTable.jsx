@@ -26,7 +26,7 @@ const PrestadoraTable = () => {
     }
 
     return (
-        <div className="d-flex vh-100 w-full justify-content-center text-center">
+        <div className="vh-100 w-full justify-content-center text-center text-18">
             <div className="bg-white rounded p-3">
                 <Link to="/prestadoras/create/" className="btn btn-success text-white text-center"><BsPlus className="icon-24 text-white" /> Criar novo</Link>
                 <table className="table">

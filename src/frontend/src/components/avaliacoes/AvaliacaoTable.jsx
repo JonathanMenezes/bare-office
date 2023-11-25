@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
+import api from '../../services/api.jsx';
 
 const AvaliacaoTable = () => {
     const [avaliacao, setAvaliacao] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/avaliacoes')
+        api.get('/avaliacoes')
             .then(res => {
                 setAvaliacao(res.data)
                 console.log(res.data)
@@ -14,9 +14,9 @@ const AvaliacaoTable = () => {
     }, []);
 
     return (
-        <div className="d-flex vh-100 w-full justify-content-center text-center">
+        <div className="text-18 min-vh-100 border-box w-full justify-content-center text-center">
             <div className="bg-white rounded p-3">
-                <table className="table text-18">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Cliente</th>

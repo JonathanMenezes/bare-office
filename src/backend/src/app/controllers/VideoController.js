@@ -13,13 +13,13 @@ class VideoController {
     }
     async update(req, res) {
         const video = req.body
-        const id = req.params.id
-        const row = await VideoRepository.update(video, id)
+        const videoId = req.params.videoId
+        const row = await VideoRepository.update(video, videoId)
         res.json(row)
     }
     async delete(req, res) {
-        const id = req.params.id
-        const row = await VideoRepository.delete(id)
+        const videoId = req.params.videoId
+        const row = await VideoRepository.delete(videoId)
         res.json(row)
     }
 }

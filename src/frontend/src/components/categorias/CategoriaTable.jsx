@@ -23,7 +23,7 @@ const CategoriaTable = () => {
     }
 
     return (
-        <div className="d-flex vh-100 w-full justify-content-center text-center">
+        <div className="text-18 vh-100 w-full justify-content-center text-center">
             <div className="bg-white rounded p-3">
                 <Link to="/categorias/create" className="btn btn-success text-white text-center"><BsPlus className="icon-24 text-white" /> Criar novo</Link>
                 <table className="table">

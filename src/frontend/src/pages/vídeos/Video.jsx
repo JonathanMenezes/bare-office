@@ -36,9 +36,7 @@ const Video = () => {
                         <div className='row'>
                             <div className='card'>
                                 <div className='card-body'>
-                                    <div id='cliente-table' className='table-responsive'>
-                                        <VideoTable />
-                                    </div>
+                                    <VideoTable />
                                 </div>
                             </div>
                         </div>

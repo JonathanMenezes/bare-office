@@ -3,7 +3,7 @@ import { consulta } from '../database/db.js';
 class ClienteRepository {
 
     findAll() {
-        const sql = "SELECT *, DATE_FORMAT(dataNasc, '%d/%m/%Y') AS dataNasc FROM `bare_office`.`cliente`";
+        const sql = "SELECT * FROM `bare_office`.`cliente`";
         return consulta(sql)
     }
     create(cliente) {

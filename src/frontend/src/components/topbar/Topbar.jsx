@@ -8,7 +8,7 @@ import NotificationDropdown from './NotificationDropdown';
 import MessageDropdown from './MessageDropdown';
 import { Link } from 'react-router-dom';
 
-const Topbar = () => {
+const Topbar = ({ user }) => {
     const [openNotification, setOpenNotification] = useState(false);
     const [openMessage, setOpenMessage] = useState(false);
     const [openProfile, setOpenProfile] = useState(false);

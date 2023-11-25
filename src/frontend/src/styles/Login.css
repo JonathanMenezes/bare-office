@@ -2,22 +2,27 @@
   font-family: "Material-Design-Iconic-Font";
   src: url("../../node_modules/material-design-iconic-font/scss/_variables.scss");
 }
+
 @font-face {
   font-family: Poppins-Regular;
   src: url("../fonts/poppins/Poppins-Regular.ttf");
 }
+
 @font-face {
   font-family: Poppins-Medium;
   src: url("../fonts/poppins/Poppins-Medium.ttf");
 }
+
 @font-face {
   font-family: Poppins-Bold;
   src: url("../fonts/poppins/Poppins-Bold.ttf");
 }
+
 @font-face {
   font-family: Poppins-SemiBold;
   src: url("../fonts/poppins/Poppins-SemiBold.ttf");
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -324,19 +329,19 @@ iframe {
   transition: all 0.4s;
 }
 
-.input100:focus + .focus-input100::before {
+.input100:focus+.focus-input100::before {
   width: 100%;
 }
 
-.has-val.input100 + .focus-input100::before {
+.has-val.input100+.focus-input100::before {
   width: 100%;
 }
 
-.input100:focus + .focus-input100::after {
+.input100:focus+.focus-input100::after {
   color: #a64bf4;
 }
 
-.has-val.input100 + .focus-input100::after {
+.has-val.input100+.focus-input100::after {
   color: #a64bf4;
 }
 
@@ -374,7 +379,7 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Poppins-Medium;
+  font-family: Poppins-Bold;
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
@@ -440,8 +445,9 @@ iframe {
     opacity: 1;
   }
 }
+
 .login100-social-item {
-  font-size: 25px;
+  font-size: 30px;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -462,4 +468,6 @@ iframe {
     padding-left: 15px;
     padding-right: 15px;
   }
-}/*# sourceMappingURL=Login.css.map */
+}
+
+/*# sourceMappingURL=Login.css.map */

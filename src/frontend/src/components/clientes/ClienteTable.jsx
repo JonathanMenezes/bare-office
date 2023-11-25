@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsPlus } from "react-icons/bs";
 import { MdDelete, MdEdit } from "react-icons/md";
+import axios from 'axios';
+
 
 const ClienteTable = () => {
     const [cliente, setCliente] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:5000/clientes')
+        axios.get('http://localhost:5000/clientes')
             .then(res => {
                 setCliente(res.data)
                 console.log(res.data)
@@ -17,7 +18,7 @@ const ClienteTable = () => {
     }, []);
 
     function handleDelete(id) {
-        axios.delete("http://127.0.0.1:5000/clientes/" + id)
+        axios.delete("http://localhost:5000/clientes/" + id)
             .then(window.location.reload())
             .catch(err => {
                 console.log(err)
@@ -25,8 +26,8 @@ const ClienteTable = () => {
     }
 
     return (
-        <div className="d-flex vh-100 w-full justify-content-center text-center">
-            <div className="bg-white rounded p-3 text-18">
+        <div className="text-18 vh-100 w-full justify-content-center text-center">
+            <div className="bg-white rounded p-3">
                 <Link to="/clientes/create" className="btn btn-success text-white text-center"><BsPlus className="icon-24 text-white" /> Criar novo</Link>
                 <table className="table">
                     <thead>

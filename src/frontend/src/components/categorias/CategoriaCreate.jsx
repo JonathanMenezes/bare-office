@@ -9,7 +9,7 @@ const CategoriaCreate = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.post('http://127.0.0.1:5000/categorias/create', {
+        axios.post('http://127.0.0.1:5000/categorias-create', {
             nome, ativa
         })
             .then(res => {
@@ -19,7 +19,7 @@ const CategoriaCreate = () => {
     }
 
     return (
-        <div className="d-flex w-full vh-100 justify-content-center">
+        <div className="text-18 w-full vh-100 justify-content-center">
             <div className="bg-white rounded p-3">
                 <form onSubmit={handleSubmit}>
                     <div className='mb-2'>

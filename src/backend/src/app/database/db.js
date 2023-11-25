@@ -1,4 +1,4 @@
-import { createConnection } from 'mysql2'
+import { createConnection } from 'mysql'
 
 const db = new createConnection({
     host: "127.0.0.1",

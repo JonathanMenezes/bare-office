@@ -34,9 +34,9 @@ const Avaliacao = () => {
                             </div>
                         </div>
                         <div className='row'>
-                            <div className='card'>
-                                <div className='card-body'>
-                                    <div id='cliente-table' className='table-responsive'>
+                            <div className="col-md-12">
+                                <div className='card'>
+                                    <div className='card-body'>
                                         <AvaliacaoTable />
                                     </div>
                                 </div>

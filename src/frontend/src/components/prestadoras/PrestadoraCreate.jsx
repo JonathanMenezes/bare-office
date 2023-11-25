@@ -3,52 +3,98 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const PrestadoraCreate = () => {
+    const [id, setId] = useState(0)
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [telefone, setTelefone] = useState('')
-    const [ativo, setAtivo] = useState(false)
+    const [ativo, setAtivo] = useState(0)
     const navigate = useNavigate();
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:5000/prestadoras/create', {
-            nome, email, telefone, ativo
-        })
-            .then(res => {
-                console.log(res);
-                navigate('/prestadoras');
-            }).catch(err => console.log(err));
+        const requestData = {
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            ativo: ativo
+        }
+
+        try {
+            await axios.post('http://127.0.0.1:5000/prestadoras-create', requestData)
+                .then(res => {
+                    console.log(res);
+                    navigate('/prestadoras');
+                })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
-        <div className="d-flex vh-100 w-full justify-content-center">
+        <div className="text-25 vh-100 w-full justify-content-center">
             <div className="bg-white rounded p-3">
-                <form onSubmit={handleSubmit}>
+                <form className="w-full" onSubmit={handleSubmit}>
                     <div className='mb-2'>
-                        <label htmlFor=''>Nome</label>
-                        <input type='text' className='form-control' placeholder='Digite o nome da prestadora' onChange={e => setNome(e.target.value)} />
+                        <label htmlFor='id'>ID</label>
+                        <input
+                            id='id'
+                            type='number'
+                            className='form-control text-black text-18'
+                            placeholder='Digite o ID da prestadora'
+                            value={id}
+                            onChange={e => setId(e.target.value)}
+                        />
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor=''>E-mail</label>
-                        <input type='text' className='form-control' placeholder='Digite o e-mail da prestadora' onChange={e => setEmail(e.target.value)} />
+                        <label htmlFor='nome'>Nome</label>
+                        <input
+                            id='nome'
+                            type='text'
+                            className='form-control text-black text-18'
+                            placeholder='Digite o nome da prestadora'
+                            value={nome}
+                            onChange={e => setNome(e.target.value)}
+                        />
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor=''>Telefone</label>
-                        <input type='text' className='form-control' placeholder='Digite o telefone da prestadora' onChange={e => setTelefone(e.target.value)} />
+                        <label htmlFor='email'>Email</label>
+                        <input
+                            id='email'
+                            type='text'
+                            className='form-control text-black text-18'
+                            placeholder='Digite o endereço de email da prestadora'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            autoComplete='on'
+                        />
                     </div>
-                    <fieldset className='mb-2'>
-                        <legend htmlFor=''>Prestadora ativa?</legend>
-                        <div>
-                            <input type='radio' name="active" id='true' value={true} onChange={e => setAtivo(e.target.value)} />
-                            <label htmlFor='true'>Sim</label>
-                        </div>
-                        <div>
-                            <input type='radio' name="active" id='false' value={false} onChange={e => setAtivo(e.target.value)} />
-                            <label htmlFor='false'>Não</label>
-                        </div>
-                    </fieldset>
-                    <button className='btn btn-success rounded-full text-center text-white'>Cadastrar</button>
+                    <div className='mb-2'>
+                        <label htmlFor='telefone'>Telefone</label>
+                        <input
+                            id='telefone'
+                            type='text'
+                            className='form-control text-black text-18'
+                            placeholder='Digite o telefone da prestadora'
+                            value={telefone}
+                            onChange={e => setTelefone(e.target.value)}
+                        />
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor='ativo'>Prestadora ativa? (1 = sim, 0 = não)</label>
+                        <input
+                            id='ativo'
+                            type='number'
+                            className='form-control text-black text-18'
+                            placeholder='Digite o telefone da prestadora'
+                            value={ativo}
+                            onChange={e => setAtivo(e.target.value)}
+                        />
+                    </div>
+                    <button className='btn btn-success rounded-full text-center text-white mb-2 text-bold' type="submit">Cadastrar</button>
                 </form>
+                <div className="mb-2">
+                    <button className='btn btn-danger rounded-full text-center text-white text-bold' onClick={() => navigate("/prestadoras")}>Voltar</button>
+                </div>
             </div>
         </div>
     )

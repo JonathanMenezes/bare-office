@@ -3,22 +3,28 @@ import { consulta } from '../database/db.js';
 class VideoRepository {
 
     findAll() {
-        const sql = "SELECT titulo, TIME_FORMAT(duracao, '%H:%i:%s') AS duracao, p.nome AS prestadora_id FROM bare_office.video v JOIN bare_office.prestadora p ON p.id = v.prestadora_id ORDER BY v.id";
+        const sql = `SELECT titulo, 
+        duracao, 
+        p.nome AS prestadora_id 
+        FROM video v 
+        JOIN prestadora p 
+        ON p.id = v.prestadora_id 
+        ORDER BY v.videoId`;
         return consulta(sql)
     }
     create(video) {
-        const sql = "INSERT INTO `bare_office`.`video` SET ?";
+        const sql = "INSERT INTO video SET ?";
         return consulta(sql, video)
     }
 
-    update(video, id) {
-        const sql = "UPDATE `bare_office`.`video` SET ? WHERE `id` = ?";
-        return consulta(sql, [video, id])
+    update(video, videoId) {
+        const sql = "UPDATE video SET ? WHERE videoId = ?;";
+        return consulta(sql, [video, videoId])
     }
 
-    delete(id) {
-        const sql = "DELETE FROM `bare_office`.`video` WHERE `id` = ?";
-        return consulta(sql, id)
+    delete(videoId) {
+        const sql = "DELETE FROM video  WHERE videoId = ?";
+        return consulta(sql, videoId)
     }
 }
 
