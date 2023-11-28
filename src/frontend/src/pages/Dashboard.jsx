@@ -17,7 +17,7 @@ import Sidebar from '../components/sidebar/SidebarDashboard.jsx';
 class Dashboard extends React.Component {
     render() {
         return (
-            <div id="app">
+            <div id="app" classname="limiter">
                 <div className="body">
                     <div className='preloader' style={{ display: 'none' }}>
                         <div className="lds-ripple">

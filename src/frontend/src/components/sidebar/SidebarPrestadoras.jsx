@@ -6,6 +6,9 @@ import { BsPersonVcardFill } from "react-icons/bs";
 import { FaClipboardCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+import '../../styles/util.css';
+import '../../styles/Dashboard.css';
+
 const Sidebar = () => {
 
 

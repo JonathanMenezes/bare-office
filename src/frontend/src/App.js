@@ -18,7 +18,6 @@ import CriarVideo from "./pages/vídeos/CriarVideo";
 import AtualizarVideo from './pages/vídeos/AtualizarVideo';
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
-
 function App() {
   const [user, setUser] = useState(null);
 

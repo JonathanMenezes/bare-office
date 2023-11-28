@@ -9,7 +9,7 @@ class VideoRepository {
         FROM video v 
         JOIN prestadora p 
         ON p.id = v.prestadora_id 
-        ORDER BY v.videoId`;
+        ORDER BY v.id`;
         return consulta(sql)
     }
     create(video) {
@@ -17,14 +17,14 @@ class VideoRepository {
         return consulta(sql, video)
     }
 
-    update(video, videoId) {
-        const sql = "UPDATE video SET ? WHERE videoId = ?;";
-        return consulta(sql, [video, videoId])
+    update(video, id) {
+        const sql = "UPDATE video SET ? WHERE id = ?";
+        return consulta(sql, [video, id])
     }
 
-    delete(videoId) {
-        const sql = "DELETE FROM video  WHERE videoId = ?";
-        return consulta(sql, videoId)
+    delete(id) {
+        const sql = "DELETE FROM video  WHERE id = ?";
+        return consulta(sql, id)
     }
 }
 

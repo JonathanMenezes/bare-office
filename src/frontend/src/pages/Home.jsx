@@ -16,11 +16,11 @@ const Home = () => {
                 <div className="container-landing">
                     <div className='wrap-landing p-l-68 p-r-68 p-t-76 p-b-80'>
                         <div className='landing'>
-                            <div className="logo-brand p-b-224">
-                                <i className='logo-icon'>
+                            <div className="landing-logo-brand p-b-224">
+                                <i className='landing-logo-icon'>
                                     <BiSolidLeaf />
                                 </i>
-                                <span className="logo-text ms-2">BARÉ OFFICE</span>
+                                <span className="landing-logo-text ms-2">BARÉ OFFICE</span>
                             </div>
                             <span className='landing-welcome m-t-224 m-b-224'>Bem-vindo(a) de volta!</span>
                             <div className="container-landing-form-btn">

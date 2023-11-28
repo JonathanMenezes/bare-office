@@ -30,7 +30,7 @@ const CriarPrestadora = () => {
                     <div className="page-breadcrumb">
                         <div className='row'>
                             <div className='col-5 align-self-center'>
-                                <h2 className='page-title'>Criar Prestadora</h2>
+                                <h2 className='page-title'>Cadastrar Prestadora</h2>
                             </div>
                         </div>
                         <div className='row'>

@@ -17,7 +17,7 @@ const Register = () => {
             username,
             email,
             password
-        }).then(navigate("/"))
+        }).then(navigate("/login"))
             .catch(error => {
                 if (error.response) {
                     console.log(error.response.data);
@@ -69,7 +69,7 @@ const Register = () => {
                                 Já Possui Conta?
                             </span>
 
-                            <Link to="/" className="txt2">
+                            <Link to="/login" className="txt2">
                                 LOGIN
                             </Link>
                         </div>

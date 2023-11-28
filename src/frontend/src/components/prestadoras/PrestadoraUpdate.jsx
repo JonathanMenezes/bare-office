@@ -40,7 +40,7 @@ const PrestadoraUpdate = () => {
                             id='id'
                             type='number'
                             className='form-control text-black text-18'
-                            placeholder='Digite o ID da prestadora'
+                            readOnly
                             value={id}
                         />
                     </div>

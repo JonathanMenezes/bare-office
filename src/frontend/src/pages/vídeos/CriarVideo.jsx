@@ -30,7 +30,7 @@ const CriarVideo = () => {
                     <div className="page-breadcrumb">
                         <div className='row'>
                             <div className='col-5 align-self-center'>
-                                <h2 className='page-title'>Vídeos</h2>
+                                <h2 className='page-title'>Cadastrar Vídeo</h2>
                             </div>
                         </div>
                         <div className='row'>

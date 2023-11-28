@@ -16,9 +16,9 @@ const VideoTable = () => {
             .catch(err => console.log(err));
     }, []);
 
-    const handleDelete = async (videoId) => {
+    const handleDelete = async (id) => {
         try {
-            await axios.delete("http://127.0.0.1:5000/videos/" + videoId);
+            await axios.delete("http://127.0.0.1:5000/videos/" + id);
             window.location.reload();
         } catch (err) {
             console.log(err);
@@ -42,13 +42,13 @@ const VideoTable = () => {
                     <tbody>
                         {
                             video.map((data) => (
-                                <tr key={data.videoId}>
+                                <tr key={data.id}>
                                     <td>{data.titulo}</td>
                                     <td>{data.duracao}</td>
                                     <td>{data.prestadora_id}</td>
                                     <td>
-                                        <Link to={`/videos/update/${data.videoId}`} className="btn btn-primary text-white text-center"><MdEdit className="icon-24 text-white" /> Editar</Link>
-                                        <button className="btn btn-danger text-white ms-2 text-center" onClick={e => handleDelete(data.videoId)}><MdDelete className="icon-24 text-white" /> Excluir</button>
+                                        <Link to={`/videos/update/${data.id}`} className="btn btn-primary text-white text-center"><MdEdit className="icon-24 text-white" /> Editar</Link>
+                                        <button className="btn btn-danger text-white ms-2 text-center" onClick={e => handleDelete(data.id)}><MdDelete className="icon-24 text-white" /> Excluir</button>
                                     </td>
                                 </tr>
                             ))

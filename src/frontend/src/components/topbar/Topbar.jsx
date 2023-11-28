@@ -8,6 +8,9 @@ import NotificationDropdown from './NotificationDropdown';
 import MessageDropdown from './MessageDropdown';
 import { Link } from 'react-router-dom';
 
+import '../../styles/util.css'
+import '../../styles/Dashboard.css'
+
 const Topbar = ({ user }) => {
     const [openNotification, setOpenNotification] = useState(false);
     const [openMessage, setOpenMessage] = useState(false);
@@ -19,10 +22,10 @@ const Topbar = ({ user }) => {
                 <nav className="navbar top-navbar navbar-expand-md navbar-dark">
                     <div className="navbar-header" data-logobg="skin5">
                         <a className="navbar-brand" href="localhost:3000/dashboard">
-                            <b className="logo-icon ps-2">
+                            <b className="logo-icon icon-24 ps-2">
                                 <BiSolidLeaf />
                             </b>
-                            <span className="logo-text ms-2">BARÉ OFFICE</span>
+                            <span className="logo-text text-24 ms-2">BARÉ OFFICE</span>
                         </a>
                         <Link className='nav-toggler waves-effect waves-light d-block d-md-none'>
                             <i className='ti-menu ti-close'></i>

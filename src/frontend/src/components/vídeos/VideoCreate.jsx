@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const VideoCreate = () => {
-    const [videoId, setVideoId] = useState(0)
+    const [id, setId] = useState(0)
     const [titulo, setTitulo] = useState('')
     const [duracao, setDuracao] = useState('')
     const [prestadora_id, setPrestadora_id] = useState(0)
@@ -12,7 +12,7 @@ const VideoCreate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const requestData = {
-            video_id: videoId,
+            video_id: id,
             titulo: titulo,
             duracao: duracao,
             prestadora_id: prestadora_id
@@ -38,8 +38,9 @@ const VideoCreate = () => {
                             id='id'
                             type='number'
                             className='form-control text-black text-18'
-                            value={videoId}
-                            onChange={e => setVideoId(e.target.value)}
+                            placeholder='Digite o ID do vídeo'
+                            value={id}
+                            onChange={e => setId(e.target.value)}
                         />
                     </div>
                     <div className='mb-2'>

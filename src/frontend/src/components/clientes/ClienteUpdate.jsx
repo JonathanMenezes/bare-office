@@ -40,7 +40,6 @@ const ClienteUpdate = () => {
                             id='id'
                             type='number'
                             className='form-control text-black text-18'
-                            placeholder='Digite o ID do cliente'
                             readOnly
                             value={id}
                         />

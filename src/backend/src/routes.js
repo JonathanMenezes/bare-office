@@ -55,8 +55,8 @@ router.delete('/prestadoras/:id', PrestadoraController.delete)
 
 router.get('/videos', VideoController.index)
 router.post('/videos-create', VideoController.store)
-router.put('/videos-update/:videoId', VideoController.update)
-router.delete('/videos/:videoId', VideoController.delete)
+router.put('/videos-update/:id', VideoController.update)
+router.delete('/videos/:id', VideoController.delete)
 
 router.get('/categorias', CategoriaController.index)
 router.post('/categorias-create', CategoriaController.store)

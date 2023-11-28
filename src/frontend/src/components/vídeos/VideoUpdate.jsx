@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const VideoUpdate = () => {
-    const { videoId } = useParams()
+    const { id } = useParams()
+    const [newId, setId] = useState(id)
     const [titulo, setTitulo] = useState('')
     const [duracao, setDuracao] = useState('')
     const [prestadora_id, setPrestadora_id] = useState(0)
@@ -12,12 +13,13 @@ const VideoUpdate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const requestData = {
+            id: id,
             titulo: titulo,
             duracao: duracao,
             prestadora_id: prestadora_id
         }
         try {
-            await axios.put('http://127.0.0.1:5000/videos-update/' + videoId, requestData)
+            await axios.put('http://127.0.0.1:5000/videos-update/' + id, requestData)
                 .then(res => {
                     console.log(res);
                     navigate('/videos');
@@ -32,12 +34,13 @@ const VideoUpdate = () => {
             <div className="bg-white rounded p-3">
                 <form className="w-full" onSubmit={handleSubmit}>
                     <div className='mb-2'>
-                        <label htmlFor='videoId'>ID do vídeo</label>
+                        <label htmlFor='id'>ID do vídeo</label>
                         <input
-                            id='videoId'
+                            id='id'
                             type='number'
                             className='form-control text-black text-18'
-                            value={videoId}
+                            value={newId}
+                            onChange={e => setId(e.target.value)}
                         />
                     </div>
                     <div className='mb-2'>

@@ -11750,17 +11750,17 @@ fieldset:disabled .btn {
 }
 
 .logo-icon {
-  margin-right: 5px;
-  color: #0c0;
-  background: #1F262D;
-  font-size: 24px;
+  margin-right: 5px !important;
+  color: #0c0 !important;
+  background: #1F262D !important;
+  font-size: 24px !important;
 }
 
 .logo-text {
-  font-size: 24px;
-  color: #0c0;
-  font-family: Poppins-Bold;
-  background: #1F262D;
+  font-size: 24px !important;
+  color: #0c0 !important;
+  font-family: Poppins-Bold !important;
+  background: #1F262D !important;
 }
 
 #main-wrapper .topbar .navbar-collapse[data-navbarbg=skin5],
@@ -13884,4 +13884,9 @@ canvas {
   height: 31px;
   width: 31px;
   object-fit: cover;
+}
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
 }

@@ -6,10 +6,10 @@ import { BsPersonVcardFill } from "react-icons/bs";
 import { FaClipboardCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+import '../../styles/util.css';
+import '../../styles/Dashboard.css';
+
 const Sidebar = () => {
-    const logout = () => {
-        window.open("http://localhost:5000/auth/logout", "_self");
-    }
 
     return (
         <div>
@@ -66,14 +66,14 @@ const Sidebar = () => {
                                 </Link>
                             </li>
                             <li className='sidebar-item selected-2'>
-                                <li className='sidebar-link waves-effect waves-dark active' onClick={logout}>
+                                <Link to="/" className='sidebar-link waves-effect waves-dark active' >
                                     <button className='btn btn-green rounded-full text-center text-black opacity-100'>
                                         <i className='mdi mdi-view-dashboard sidebar-icon text-black'>
                                             <MdLogout className='icon-24' />
                                         </i>
                                         <span className='hide-menu text-bold'>Encerrar Sessão</span>
                                     </button>
-                                </li>
+                                </Link>
                             </li>
                         </ul>
                     </nav>

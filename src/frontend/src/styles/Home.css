@@ -48,7 +48,7 @@ button:hover {
     width: 100%;
 }
 
-.logo-brand {
+.landing-logo-brand {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,13 +58,13 @@ button:hover {
     white-space: nowrap;
 }
 
-.logo-icon {
+.landing-logo-icon {
     color: #0c0;
     background: none;
     font-size: 70px;
 }
 
-.logo-text {
+.landing-logo-text {
     font-size: 70px;
     color: #0c0;
     font-family: Poppins-Bold;
