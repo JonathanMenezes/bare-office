@@ -1,9 +1,14 @@
+import axios from "axios";
+import React, { useState } from "react";
+import { AiOutlineSwapRight } from "react-icons/ai";
+import { BiSolidLeaf } from 'react-icons/bi';
+import { BsFillShieldLockFill } from "react-icons/bs";
+import { FaUserShield } from "react-icons/fa";
+import { MdMarkEmailRead } from 'react-icons/md';
+import { Link, useNavigate } from "react-router-dom";
+import video from "../assets/video.mp4";
 import "../styles/Register.css";
 import "../styles/util.css";
-import { Link, useNavigate } from "react-router-dom";
-import { MdOutlineEmail, MdPersonOutline, MdLockOutline } from "react-icons/md";
-import React, { useState } from "react";
-import axios from "axios";
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -13,66 +18,79 @@ const Register = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.post('http:/127.0.0.1:5000/register', {
-            username,
-            email,
-            password
-        }).then(navigate("/login"))
-            .catch(error => {
-                if (error.response) {
-                    console.log(error.response.data);
-                }
-            })
+        axios.post('http:/localhost:5000/register', {
+            username: username,
+            email: email,
+            password: password
+        }).then(() => {
+            navigate("/login")
+
+            setUsername('');
+            setEmail('');
+            setPassword('');
+        })
     };
 
 
 
     return (
-        <div className="limiter">
-            <div className="container-login100">
-                <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                    <form className="login100-form validate-form">
-                        <span className="login100-form-title p-b-49">Cadastrar Usuário</span>
-                        <div className="wrap-input100 validate-input m-b-23">
-                            <label className="label-input100" htmlFor="username">Usuário</label>
+        <div className="registerPage flex">
+            <video autoPlay loop muted className="anim-back">
+                <source src={video} type='video/mp4' />
+            </video>
+            <div className='container flex'>
+                <div className="videoDiv">
+
+                    <div className="textDiv">
+                        <h2 className="title">BARÉ OFFICE</h2>
+                        <p className="text">Sistema de Monitoramento de Avaliações da Qualidade Percebida de Vídeos de Clientes de Serviços de Streaming</p>
+                    </div>
+
+                    <div class="footerDiv flex">
+                        <span class="text">Já possui cadastro?</span>
+                        <Link to="/login">
+                            <button class="button">Login</button>
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="formDiv flex">
+                    <div className="headerDiv">
+                        <BiSolidLeaf className="register-logo-icon" />
+                        <h3>Cadastrar Usuário</h3>
+                    </div>
+
+                    <form action="" className="form grid">
+                        <div className="inputDiv">
+                            <label htmlFor="username">Nome de Usuário</label>
                             <div className="input flex">
-                                <MdPersonOutline className="icon" />
-                                <input className="input100" id='username' autoComplete="on" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Digite seu nome de usuário" required />
+                                <FaUserShield className="icon" />
+                                <input type="text" id="username" placeholder="Digite seu nome de usuário" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                            </div>
+                        </div>
+                        <div className="inputDiv">
+                            <label htmlFor="email">Endereço de Email</label>
+                            <div className="input flex">
+                                <MdMarkEmailRead className="icon" />
+                                <input type="email" id="email" placeholder="Digite seu endereço de email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                            </div>
+                        </div>
+                        <div className="inputDiv">
+                            <label htmlFor="password">Senha</label>
+                            <div className="input flex">
+                                <BsFillShieldLockFill className="icon" />
+                                <input type="password" id="password" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
                             </div>
                         </div>
 
-                        <div className="wrap-input100 validate-input m-b-23">
-                            <label className="label-input100" htmlFor="email">Usuário</label>
-                            <div className="input flex">
-                                <MdOutlineEmail className="icon" />
-                                <input className="input100" id='email' autoComplete="on" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu endereço de email" required />
-                            </div>
-                        </div>
+                        <button type="submit" onClick={handleSubmit} className="button flex">
+                            <span>Finalizar Cadastro</span>
+                            <AiOutlineSwapRight className="icon" />
+                        </button>
 
-                        <div className="wrap-input100 validate-input m-b-23">
-                            <label className="label-input100" htmlFor="password">Senha</label>
-                            <div className="input flex">
-                                <MdLockOutline className="icon" />
-                                <input className="input100" id='password' autoComplete="on" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite sua senha" required />
-                            </div>
-                        </div>
-                        <div className="container-login100-form-btn">
-                            <div className="wrap-login100-form-btn">
-                                <div className="login100-form-bgbtn"></div>
-                                <button className="login100-form-btn" onClick={handleSubmit}>
-                                    Finalizar Cadastro
-                                </button>
-                            </div>
-                        </div>
-                        <div className="flex-col-c p-t-155">
-                            <span className="txt1 p-b-17">
-                                Já Possui Conta?
-                            </span>
-
-                            <Link to="/login" className="txt2">
-                                LOGIN
-                            </Link>
-                        </div>
+                        <span className="forgotPassword">
+                            Esqueceu sua senha? <a href="_self">Clique aqui</a>
+                        </span>
                     </form>
                 </div>
             </div>

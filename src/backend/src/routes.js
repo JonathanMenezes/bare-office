@@ -1,19 +1,12 @@
 import { Router } from "express";
-import passport from 'passport'
 
 import ClienteController from './app/controllers/ClienteController.js'
-import UserController from "./app/controllers/UserController.js"
 import PrestadoraController from "./app/controllers/PrestadoraController.js"
 import VideoController from "./app/controllers/VideoController.js"
 import AvaliacaoController from "./app/controllers/AvaliacaoController.js"
 import CategoriaController from "./app/controllers/CategoriaController.js"
 
-const DASHBOARD = "http://localhost:3000/dashboard"
-
 const router = Router();
-
-router.post('/register', UserController.register)
-router.get('/login', UserController.login)
 
 router.get('/login/failed', (req, res) => {
     res.status(401).json({
@@ -36,13 +29,6 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 })
 
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
-
-router.get('/google/callback', passport.authenticate('google', {
-    successRedirect: DASHBOARD,
-    failureRedirect: '/login/failed'
-}))
-
 router.get('/clientes', ClienteController.index)
 router.post('/clientes-create', ClienteController.store)
 router.put('/clientes-update/:id', ClienteController.update)
@@ -64,5 +50,6 @@ router.put('/categorias-update/:id', CategoriaController.update)
 router.delete('/categorias/:id', CategoriaController.delete)
 
 router.get('/avaliacoes', AvaliacaoController.index)
+router.post('/avaliacoes-create', AvaliacaoController.store)
 
 export default router

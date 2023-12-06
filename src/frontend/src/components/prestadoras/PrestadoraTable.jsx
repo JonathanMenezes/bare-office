@@ -1,28 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React from 'react';
+// import { useEffect, useState } from 'react';
+// import axios from "axios";
 import { BsPlus } from "react-icons/bs";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import prestadoras from '../data/prestadoras';
 
 const PrestadoraTable = () => {
-    const [prestadora, setPrestadora] = useState([]);
+    // const [prestadora, setPrestadora] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://127.0.0.1:5000/prestadoras')
-            .then(res => {
-                setPrestadora(res.data)
-                console.log(res.data)
-            })
-            .catch(err => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     axios.get('http://127.0.0.1:5000/prestadoras')
+    //         .then(res => {
+    //             setPrestadora(res.data)
+    //             console.log(res.data)
+    //         })
+    //         .catch(err => console.log(err));
+    // }, []);
 
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete("http://127.0.0.1:5000/prestadoras/" + id);
-            window.location.reload();
-        } catch (err) {
-            console.log(err);
-        }
+    // const handleDelete = async (id) => {
+    //     try {
+    //         await axios.delete("http://127.0.0.1:5000/prestadoras/" + id);
+    //         window.location.reload();
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+
+    const navigate = useNavigate()
+
+    function setID(id, nome, email, telefone, ativo) {
+        localStorage.setItem('id', id)
+        localStorage.setItem('nome', nome)
+        localStorage.setItem('email', email)
+        localStorage.setItem('telefone', telefone)
+        localStorage.setItem('ativo', ativo)
+    }
+
+    function excluir(id) {
+        let index = prestadoras.map(function (e) {
+            return e.id
+        }).indexOf(id);
+
+        prestadoras.splice(index, 1);
+
+        navigate("/prestadoras")
     }
 
     return (
@@ -41,15 +63,17 @@ const PrestadoraTable = () => {
                     </thead>
                     <tbody>
                         {
-                            prestadora.map((data) => (
-                                <tr key={data.id}>
-                                    <td>{data.nome}</td>
-                                    <td>{data.email}</td>
-                                    <td>{data.telefone}</td>
-                                    <td>{data.ativo}</td>
+                            prestadoras.map((item) => (
+                                <tr>
+                                    <td>{item.nome}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.telefone}</td>
+                                    <td>{item.ativo}</td>
                                     <td>
-                                        <Link to={`/prestadoras/update/${data.id}`} className="btn btn-primary text-white text-center"><MdEdit className="icon-24 text-white" /> Editar</Link>
-                                        <button className="btn btn-danger text-white ms-2 text-center" onClick={e => handleDelete(data.id)}><MdDelete className="icon-24 text-white" /> Excluir</button>
+                                        <Link to="/prestadoras/update" className="btn btn-primary text-white text-center" onChange={(e) => setID(item.id, item.nome, item.email, item.telefone, item.ativo)}>
+                                            <MdEdit className="icon-24 text-white" /> Editar
+                                        </Link>
+                                        <button className="btn btn-danger text-white ms-2 text-center" onClick={(e) => excluir(item.id)}><MdDelete className="icon-24 text-white" /> Excluir</button>
                                     </td>
                                 </tr>
                             ))

@@ -1,29 +1,43 @@
-import axios from 'axios'
+// import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
+import categorias from '../data/categorias'
 
 const CategoriaCreate = () => {
-    const [id, setId] = useState(0)
     const [nome, setNome] = useState('')
-    const [ativa, setAtiva] = useState(0)
+    const [ativa, setAtiva] = useState('')
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const requestData = {
-            id: id,
-            nome: nome,
-            ativa: ativa
-        }
-        try {
-            await axios.post('http://localhost:5000/categorias-create', requestData)
-                .then(res => {
-                    console.log(res);
-                    navigate('/categorias');
-                })
-        } catch (err) {
-            console.log('Erro ao cadastrar cliente: ', err.message)
+        // const requestData = {
+        //     id: id,
+        //     nome: nome,
+        //     ativa: ativa
+        // }
+        // try {
+        //     await axios.post('http://localhost:5000/categorias-create', requestData)
+        //         .then(res => {
+        //             console.log(res);
+        //             navigate('/categorias');
+        //         })
+        // } catch (err) {
+        //     console.log('Erro ao cadastrar cliente: ', err.message)
+        // }
+
+        const ids = uuid();
+        let uni = ids.slice(0, 8);
+
+        let a = nome,
+            b = ativa;
+
+        if (nome === '' || ativa === '') {
+            alert('Preencha todos os campos')
+        } else {
+            categorias.push({ id: uni, nome: a, ativa: b })
+            navigate('/categorias')
         }
     }
 
@@ -32,33 +46,23 @@ const CategoriaCreate = () => {
             <div className="bg-white rounded p-3">
                 <form className="w-full">
                     <div className='mb-2'>
-                        <label htmlFor='id'>ID</label>
-                        <input
-                            id='id'
-                            type='number'
-                            className='form-control text-black text-18'
-                            placeholder='Digite o ID do cliente'
-                            value={id}
-                            onChange={e => setId(e.target.value)}
-                        />
-                    </div>
-                    <div className='mb-2'>
                         <label htmlFor='nome'>Nome</label>
                         <input
                             id='nome'
                             type='text'
                             className='form-control text-black text-18'
-                            placeholder='Digite o nome do cliente'
+                            placeholder='Digite o nome da categoria'
                             value={nome}
                             onChange={e => setNome(e.target.value)}
                         />
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor='ativo'>Categoria ativa? (1 = sim, 0 = não)</label>
+                        <label htmlFor='ativo'>Categoria ativa? (Sim/Não)</label>
                         <input
                             id='ativo'
-                            type='number'
+                            type='text'
                             className='form-control text-black text-18'
+                            placeholder='Digite se a categoria está ativa ou não'
                             value={ativa}
                             onChange={e => setAtiva(e.target.value)}
                         />

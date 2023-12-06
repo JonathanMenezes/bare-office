@@ -1,10 +1,10 @@
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import "../../styles/Dashboard.css";
+import React from 'react';
 import ClienteCreate from '../../components/clientes/ClienteCreate';
+import Sidebar from '../../components/sidebar/SidebarClientes';
 import Topbar from '../../components/topbar/Topbar';
-import Sidebar from '../../components/sidebar/SidebarDashboard';
+import "../../styles/Dashboard.css";
 
 const CriarCliente = () => {
     return (

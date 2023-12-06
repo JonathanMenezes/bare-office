@@ -22,7 +22,7 @@ const Home = () => {
                                 </i>
                                 <span className="landing-logo-text ms-2">BARÉ OFFICE</span>
                             </div>
-                            <span className='landing-welcome m-t-224 m-b-224'>Bem-vindo(a) de volta!</span>
+                            <span className='landing-welcome m-t-197 m-b-197'>Sistema de Monitoramento de Avaliações da Qualidade Percebida de Vídeos de Clientes de Serviços de Streaming</span>
                             <div className="container-landing-form-btn">
                                 <div className="wrap-landing-form-btn">
                                     <div className="landing-form-bgbtn"></div>

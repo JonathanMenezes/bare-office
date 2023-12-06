@@ -1,17 +1,22 @@
 import "../styles/Login.css";
 import "../styles/util.css";
 
-import { React, useState } from 'react'
+import axios from 'axios';
+import { React, useEffect, useState } from 'react';
+import { AiOutlineSwapRight } from "react-icons/ai";
+import { BiSolidLeaf } from 'react-icons/bi';
+import { BsFillShieldLockFill } from "react-icons/bs";
+import { FaUserShield } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { MdPersonOutline, MdLockOutline } from "react-icons/md";
-import { RiFacebookFill, RiGoogleFill } from "react-icons/ri";
-import { FaGithub } from "react-icons/fa"
-import axios from 'axios'
+import video from "../assets/video.mp4";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
+    const [loginStatus, setLoginStatus] = useState('')
+    const [statusHolder, setStatusHolder] = useState('message')
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -19,92 +24,84 @@ const Login = () => {
             username: username,
             password: password,
         })
-            .then(navigate("/dashboard"))
-            .catch(err => {
-                if (err.response) {
-                    navigate("/")
+            .then((response) => {
+                if (response.data.message || username === '' || password === '') {
+                    navigate("/login")
+                    setLoginStatus("Usuário Inválido")
+                } else {
+                    navigate("/dashboard");
                 }
-            });
+            })
     }
 
-    const google = () => {
-        window.open("http://localhost:5000/auth/google", "_self");
-    };
+    useEffect(() => {
+        if (loginStatus !== '') {
+            setStatusHolder('showMessage')
+            setTimeout(() => {
+                setStatusHolder('message')
+            }, 3000)
+        } else {
+            setStatusHolder('error')
+        }
+    }, [loginStatus])
 
-    const github = () => {
-        window.open("http://localhost:5000/auth/github", "_self");
-    };
-
-    const facebook = () => {
-        window.open("http://localhost:5000/auth/facebook", "_self");
-    };
+    const onSubmit = () => {
+        setUsername('');
+        setPassword('');
+    }
 
     return (
-        <div className="limiter">
-            <div className="container-login100">
-                <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                    <form className="login100-form validate-form">
-                        <span className="login100-form-title p-b-49">Login</span>
-                        <div className="wrap-input100 validate-input m-b-23">
-                            <label className="label-input100" htmlFor="username">Usuário</label>
+        <div className="loginPage flex">
+            <div className='container flex'>
+                <video autoPlay loop muted className="anim-back">
+                    <source src={video} type='video/mp4' />
+                </video>
+                <div className="videoDiv">
+
+                    <div className="textDiv">
+                        <h2 className="title">BARÉ OFFICE</h2>
+                        <p className="text">Sistema de Monitoramento de Avaliações da Qualidade Percebida de Vídeos de Clientes de Serviços de Streaming</p>
+                    </div>
+
+                    <div class="footerDiv flex">
+                        <span class="text">Usuário novo?</span>
+                        <Link to="/cadastrar">
+                            <button class="button">Cadastrar</button>
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="formDiv flex">
+                    <div className="headerDiv">
+                        <BiSolidLeaf className="login-logo-icon" />
+                        <h3>Login</h3>
+                    </div>
+
+                    <form action="" className="form grid" onSubmit={onSubmit}>
+                        <span className={statusHolder}>{loginStatus}</span>
+                        <div className="inputDiv">
+                            <label htmlFor="username">Nome de Usuário</label>
                             <div className="input flex">
-                                <MdPersonOutline className="icon" />
-                                <input className="input100" id="username" autoComplete="on" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Digite seu nome de usuário" required />
+                                <FaUserShield className="icon" />
+                                <input type="text" id="username" placeholder="Digite seu nome de usuário" value={username} onChange={(e) => setUsername(e.target.value)} required />
                             </div>
                         </div>
-
-                        <div className="wrap-input100 validate-input m-b-23">
-                            <label className="label-input100" htmlFor="password">Senha</label>
+                        <div className="inputDiv">
+                            <label htmlFor="password">Senha</label>
                             <div className="input flex">
-                                <MdLockOutline className="icon" />
-                                <input className="input100" id="password" autoComplete="on" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite sua senha" required />
+                                <BsFillShieldLockFill className="icon" />
+                                <input type="password" id="password" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
                             </div>
                         </div>
 
-                        <div className="text-right p-t-8 p-b-31">
-                            {/* eslint-disable-next-line */}
-                            <a href="#">Esqueceu a senha?</a>
-                        </div>
+                        <button type="submit" onClick={handleSubmit} className="button flex">
+                            <span>Login</span>
+                            <AiOutlineSwapRight className="icon" />
+                        </button>
 
-                        <div className="container-login100-form-btn">
-                            <div className="wrap-login100-form-btn">
-                                <div className="login100-form-bgbtn"></div>
-                                <button className="login100-form-btn" onClick={handleSubmit}>
-                                    Login
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="txt1 text-center p-t-54 p-b-20">
-                            <span>
-                                Ou Faça Login Usando
-                            </span>
-                        </div>
-
-                        <div className="flex-c-m">
-                            {/* eslint-disable-next-line */}
-                            <i className="login100-social-item bg1" onClick={facebook}>
-                                <RiFacebookFill />
-                            </i>
-                            {/* eslint-disable-next-line */}
-                            <i className="login100-social-item bg2" onClick={github}>
-                                <FaGithub />
-                            </i>
-                            {/* eslint-disable-next-line */}
-                            <i className="login100-social-item bg3" onClick={google}>
-                                <RiGoogleFill />
-                            </i>
-                        </div>
-
-                        <div className="flex-col-c p-t-155">
-                            <span className="txt1 p-b-17">
-                                Não Possui Conta?
-                            </span>
-
-                            <Link to="/cadastrar" className="txt2">
-                                CADASTRAR
-                            </Link>
-                        </div>
+                        <span className="forgotPassword">
+                            Esqueceu sua senha? <a href="_self">Clique aqui</a>
+                        </span>
                     </form>
                 </div>
             </div>

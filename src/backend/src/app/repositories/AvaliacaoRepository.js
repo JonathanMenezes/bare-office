@@ -27,6 +27,11 @@ class AvaliacaoRepository {
 
         return consulta(sql)
     }
+
+    create(avaliacao) {
+        const sql = "INSERT INTO `bare_office`.`avaliacao` SET ?";
+        return consulta(sql, avaliacao)
+    }
 }
 
 export default new AvaliacaoRepository()

@@ -1,30 +1,43 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import axios from 'axios'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
+import videos from './../data/videos';
 
 const VideoCreate = () => {
-    const [id, setId] = useState(0)
     const [titulo, setTitulo] = useState('')
-    const [duracao, setDuracao] = useState('')
-    const [prestadora_id, setPrestadora_id] = useState(0)
+    const [prestadora, setPrestadora] = useState('')
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const requestData = {
-            video_id: id,
-            titulo: titulo,
-            duracao: duracao,
-            prestadora_id: prestadora_id
-        }
-        try {
-            await axios.post('http://127.0.0.1:5000/videos-create', requestData)
-                .then(res => {
-                    console.log(res);
-                    navigate('/videos');
-                })
-        } catch (err) {
-            console.log(err)
+        // const requestData = {
+        //     video_id: id,
+        //     titulo: titulo,
+        //     duracao: duracao,
+        //     prestadora: prestadora
+        // }
+        // try {
+        //     await axios.post('http://127.0.0.1:5000/videos-create', requestData)
+        //         .then(res => {
+        //             console.log(res);
+        //             navigate('/videos');
+        //         })
+        // } catch (err) {
+        //     console.log(err)
+        // }
+
+        const ids = uuid();
+        let uni = ids.slice(0, 8);
+
+        let a = titulo,
+            b = prestadora;
+
+        if (titulo === '' || prestadora === '') {
+            alert('Preencha todos os campos')
+        } else {
+            videos.push({ id: uni, titulo: a, prestadora: b })
+            navigate('/videos')
         }
     }
 
@@ -32,17 +45,6 @@ const VideoCreate = () => {
         <div className="text-25 vh-100 w-full justify-content-center">
             <div className="bg-white rounded p-3">
                 <form className="w-full" onSubmit={handleSubmit}>
-                    <div className='mb-2'>
-                        <label htmlFor='id'>ID do vídeo</label>
-                        <input
-                            id='id'
-                            type='number'
-                            className='form-control text-black text-18'
-                            placeholder='Digite o ID do vídeo'
-                            value={id}
-                            onChange={e => setId(e.target.value)}
-                        />
-                    </div>
                     <div className='mb-2'>
                         <label htmlFor='titulo'>Título do vídeo</label>
                         <input
@@ -55,26 +57,14 @@ const VideoCreate = () => {
                         />
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor='duracao'>Duração do vídeo (HH:MM:SS)</label>
+                        <label htmlFor='prestadora'>Prestadora</label>
                         <input
-                            id='duracao'
+                            id='prestadora'
                             type='text'
                             className='form-control text-black text-18'
-                            placeholder='Digite o tempo de duração do vídeo'
-                            value={duracao}
-                            onChange={e => setDuracao(e.target.value)}
-                            autoComplete='on'
-                        />
-                    </div>
-                    <div className='mb-2'>
-                        <label htmlFor='prestadora_id'>ID da prestadora</label>
-                        <input
-                            id='prestadora_id'
-                            type='number'
-                            className='form-control text-black text-18'
-                            placeholder='Digite o ID da prestadora'
-                            value={prestadora_id}
-                            onChange={e => setPrestadora_id(e.target.value)}
+                            placeholder='Digite o nome da prestadora'
+                            value={prestadora}
+                            onChange={e => setPrestadora(e.target.value)}
                         />
                     </div>
                     <button className='btn btn-success rounded-full text-center text-white mb-2 text-bold' type="submit">Cadastrar</button>

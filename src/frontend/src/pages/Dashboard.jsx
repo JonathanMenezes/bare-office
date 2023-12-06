@@ -1,23 +1,23 @@
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import "../styles/Dashboard.css";
+import React from 'react';
 import { BiCalendarEvent, BiSolidDashboard } from "react-icons/bi";
-import { MdPerson, MdVideoLibrary, MdCategory } from "react-icons/md";
 import { BsPersonVcardFill, BsStarFill } from "react-icons/bs";
 import { FaClipboardCheck, FaPlus } from "react-icons/fa";
+import { MdCategory, MdPerson, MdVideoLibrary } from "react-icons/md";
 import { PiVideoFill } from "react-icons/pi";
-import LineChart from '../components/charts/LineChart.jsx';
 import BarChart from '../components/charts/ColumnChart.jsx';
+import LineChart from '../components/charts/LineChart.jsx';
+import "../styles/Dashboard.css";
 
-import Topbar from '../components/topbar/Topbar.jsx';
 import Sidebar from '../components/sidebar/SidebarDashboard.jsx';
+import Topbar from '../components/topbar/Topbar.jsx';
 
 
 class Dashboard extends React.Component {
     render() {
         return (
-            <div id="app" classname="limiter">
+            <div id="app">
                 <div className="body">
                     <div className='preloader' style={{ display: 'none' }}>
                         <div className="lds-ripple">

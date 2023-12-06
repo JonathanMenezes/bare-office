@@ -1,48 +1,59 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+// import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import videos from './../data/videos';
 
 const VideoUpdate = () => {
-    const { id } = useParams()
-    const [newId, setId] = useState(id)
+    const [id, setId] = useState('')
     const [titulo, setTitulo] = useState('')
-    const [duracao, setDuracao] = useState('')
-    const [prestadora_id, setPrestadora_id] = useState(0)
+    const [prestadora, setPrestadora] = useState('')
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    let index = videos.map(function (e) {
+        return e.id
+    }).indexOf(id);
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const requestData = {
-            id: id,
-            titulo: titulo,
-            duracao: duracao,
-            prestadora_id: prestadora_id
+        // const requestData = {
+        //     id: id,
+        //     titulo: titulo,
+        //     duracao: duracao,
+        //     prestadora_id: prestadora_id
+        // }
+        // try {
+        //     await axios.put('http://127.0.0.1:5000/videos-update/' + id, requestData)
+        //         .then(res => {
+        //             console.log(res);
+        //             navigate('/videos');
+        //         })
+        // } catch (err) {
+        //     console.log(err)
+        // }
+
+        if (titulo === '' || prestadora === '') {
+            alert('Preencha todos os campos')
         }
-        try {
-            await axios.put('http://127.0.0.1:5000/videos-update/' + id, requestData)
-                .then(res => {
-                    console.log(res);
-                    navigate('/videos');
-                })
-        } catch (err) {
-            console.log(err)
-        }
+
+        let v = videos[index]
+
+        v.id = id
+        v.titulo = titulo
+        v.prestadora = prestadora
+
+        navigate('/videos')
     }
+
+    useEffect(() => {
+        setId(localStorage.getItem('id'))
+        setTitulo(localStorage.getItem('titulo'))
+        setPrestadora(localStorage.getItem('prestadora'))
+    }, [])
 
     return (
         <div className="text-25 vh-100 w-full justify-content-center">
             <div className="bg-white rounded p-3">
                 <form className="w-full" onSubmit={handleSubmit}>
-                    <div className='mb-2'>
-                        <label htmlFor='id'>ID do vídeo</label>
-                        <input
-                            id='id'
-                            type='number'
-                            className='form-control text-black text-18'
-                            value={newId}
-                            onChange={e => setId(e.target.value)}
-                        />
-                    </div>
                     <div className='mb-2'>
                         <label htmlFor='titulo'>Título do vídeo</label>
                         <input
@@ -55,26 +66,14 @@ const VideoUpdate = () => {
                         />
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor='duracao'>Duração do vídeo (HH:MM:SS)</label>
+                        <label htmlFor='prestadora'>ID da prestadora</label>
                         <input
-                            id='duracao'
+                            id='prestadora'
                             type='text'
                             className='form-control text-black text-18'
-                            placeholder='Digite o tempo de duração do vídeo'
-                            value={duracao}
-                            onChange={e => setDuracao(e.target.value)}
-                            autoComplete='on'
-                        />
-                    </div>
-                    <div className='mb-2'>
-                        <label htmlFor='prestadora_id'>ID da prestadora</label>
-                        <input
-                            id='prestadora_id'
-                            type='number'
-                            className='form-control text-black text-18'
-                            placeholder='Digite o ID da prestadora'
-                            value={prestadora_id}
-                            onChange={e => setPrestadora_id(e.target.value)}
+                            placeholder='Digite o nome da prestadora'
+                            value={prestadora}
+                            onChange={e => setPrestadora(e.target.value)}
                         />
                     </div>
                     <button className='btn btn-success rounded-full text-center text-white mb-2 text-bold' type="submit">Atualizar</button>
